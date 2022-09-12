@@ -69,3 +69,8 @@ stripe listen --forward-to localhost/webhook/stripe
 ```
 docker-compose exec php bin/console cache:clear
 ```
+
+
+docker-compose exec php composer require orm-fixtures --dev   
+
+docker-compose exec php composer require fakerphp/faker
