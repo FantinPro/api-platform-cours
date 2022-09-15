@@ -74,3 +74,11 @@ docker-compose exec php bin/console cache:clear
 docker-compose exec php composer require orm-fixtures --dev   
 
 docker-compose exec php composer require fakerphp/faker
+
+docker-compose exec php bin/console make:migr
+
+
+docker-compose exec php bin/console d:m:m    
+
+ // pour generer password hashé
+docker-compose exec php bin/console s:has

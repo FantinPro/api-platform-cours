@@ -2,13 +2,31 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
 use App\Repository\PizzaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource(mercure: true)]
+#[ApiResource()]
+#[Get(
+    normalizationContext: [
+        'groups' => ['pizza_get'],
+    ],
+)]
+#[GetCollection]
+#[Post(
+    denormalizationContext: [
+        'groups' => ['pizza_write'],
+    ],
+    normalizationContext: [
+        'groups' => ['pizza_get'],
+    ]
+)]
 #[ORM\Entity(repositoryClass: PizzaRepository::class)]
 class Pizza
 {
@@ -18,11 +36,14 @@ class Pizza
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['pizza_get', 'ingredient_get', 'pizza_write'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['pizza_write'])]
     private ?string $description = null;
 
+    #[Groups(['pizza_get'])]
     #[ORM\ManyToMany(targetEntity: Ingredient::class, mappedBy: 'pizza')]
     private Collection $ingredients;
 

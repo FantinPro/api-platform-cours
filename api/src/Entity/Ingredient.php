@@ -2,13 +2,20 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\Get;
 use App\Repository\IngredientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource(mercure: true)]
+#[ApiResource()]
+#[Get(
+    normalizationContext: [
+        'groups' => ['Default', 'ingredient_get'],
+    ],
+)]
 #[ORM\Entity(repositoryClass: IngredientRepository::class)]
 class Ingredient
 {
@@ -17,8 +24,11 @@ class Ingredient
     #[ORM\Column()]
     private ?int $id = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Groups(['pizza_get', 'ingredient_get'])]
     private ?string $name = null;
+
 
     #[ORM\ManyToMany(targetEntity: Pizza::class, inversedBy: 'ingredients')]
     private Collection $pizza;
