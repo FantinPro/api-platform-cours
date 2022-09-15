@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Repository\PizzaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -11,6 +12,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 #[ApiResource()]
 #[Get(
@@ -25,7 +28,16 @@ use Symfony\Component\Serializer\Annotation\Groups;
     ],
     normalizationContext: [
         'groups' => ['pizza_get'],
-    ]
+    ],
+)]
+#[Patch(
+    denormalizationContext: [
+        'groups' => ['pizza_write'],
+    ],
+    normalizationContext: [
+        'groups' => ['pizza_get'],
+    ],
+    security: 'is_granted("ROLE_USER")',
 )]
 #[ORM\Entity(repositoryClass: PizzaRepository::class)]
 class Pizza
@@ -49,6 +61,10 @@ class Pizza
 
     #[ORM\OneToMany(mappedBy: 'pizza', targetEntity: Detail::class)]
     private Collection $details;
+
+    #[ORM\ManyToOne]
+    #[Gedmo\Blameable(on: 'create')]
+    private ?User $owner = null;
 
     public function __construct()
     {

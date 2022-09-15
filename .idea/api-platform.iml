@@ -123,6 +123,9 @@
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/league/html-to-markdown" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/willdurand/negotiation" />
       <excludeFolder url="file://$MODULE_DIR$/api/vendor/lexik/jwt-authentication-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/stof/doctrine-extensions-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/behat/transliterator" />
+      <excludeFolder url="file://$MODULE_DIR$/api/vendor/gedmo/doctrine-extensions" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

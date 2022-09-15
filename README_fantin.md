@@ -82,3 +82,6 @@ docker-compose exec php bin/console d:m:m
 
  // pour generer password hashé
 docker-compose exec php bin/console s:has
+
+
+docker-compose exec php composer require stof/doctrine-extensions-bundle

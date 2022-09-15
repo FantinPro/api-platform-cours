@@ -119,6 +119,9 @@
       <path value="$PROJECT_DIR$/api/vendor/league/html-to-markdown" />
       <path value="$PROJECT_DIR$/api/vendor/willdurand/negotiation" />
       <path value="$PROJECT_DIR$/api/vendor/lexik/jwt-authentication-bundle" />
+      <path value="$PROJECT_DIR$/api/vendor/stof/doctrine-extensions-bundle" />
+      <path value="$PROJECT_DIR$/api/vendor/behat/transliterator" />
+      <path value="$PROJECT_DIR$/api/vendor/gedmo/doctrine-extensions" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
